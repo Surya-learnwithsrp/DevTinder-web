@@ -5,6 +5,7 @@ import axios from "axios";
 
 import { removeUser } from "../store/userSlice";
 import { removeFeedData } from "../store/feedSlice";
+import { BASE_URL } from '../constants';
 
 const Navbar = () => {
   const user = useSelector((state) => state.user);
@@ -12,7 +13,7 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
-    const logout = await axios.post('http://localhost:7777/logout', {}, { withCredentials: true });
+    const logout = await axios.post(`${BASE_URL}/logout`, {}, { withCredentials: true });
     if (logout.status === 200) {
       dispatch(removeUser());
       dispatch(removeFeedData());
